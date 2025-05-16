@@ -1,0 +1,105 @@
+git@github.com:tigerblue77/Dell_iDRAC_fan_controller_Docker.git
+
+https://github.com/mcdonc/iDRAC8_fan_control
+
+https://www.youtube.com/watch?v=KamY5zMpXKI
+
+E5-2697
+
+43 deg is temp given to us by Dell
+
+76 deg is max temp according to Intel
+Disable Manual Fan Control
+sudo ipmitool raw 0x30 0x30 0x01 0x01
+
+Enable Manual Fan Control
+sudo ipmitool raw 0x30 0x30 0x01 0x01
+
+Set fan to a percentage
+SPEED15="0xF"
+sudo ipmitool raw 0x30 0x30 0x02 0xff $SPEED15
+
+From https://community.spiceworks.com/t/dell-poweredge-server-r7xx-series-fan-speed-with-gpu/350434/20
+
+got it to work!
+
+alexrozentuller’s command as specified didn’t work, but I messed with it enough to figure out how to fix it. The following worked on my T630 (from linux using OpenIPMI).
+
+ipmitool raw ﻿ 0x30 0xCE 0x00 0x16 0x05 0x00 0x00 0x00 0x05 0x00 0x01 0x00 0x00
+
+(next message)
+
+Thank you for that command. In Windows I did this command:
+
+C:\Program Files (x86)\Dell\SysMgt\bmc>ipmitool.exe -I lanplus -H 1.1.1.1 -U root -P calvin raw 0x30 0xCE  0x00 0x16 0x05 0x00 0x00 0x00 0x05 0x00 0x01 0x00 0x00
+
+My Dell R730xd has 2 Intel PCIe SSD and fans blew with 15krpm speed, this was too loud even in server room. Now it stays at 4krpm. I stress tested the cpu and the fans stayed at 4krpm (server at 140W power usage). CPU temp reached 70 celsius and I wonder if your command is OK. Is it sets the fans at constant speed of 4krpm ? Or if I pack more disks into the server would the fans start to blow faster proportional to load ?
+
+From https://community.spiceworks.com/t/dell-poweredge-server-r7xx-series-fan-speed-with-gpu/350434/37
+
+I finally got some resolution on this from Dell for installing a video card in my Dell T630 that is running Windows 7.
+
+After running the “Disable Command” listed below my fans immediately cycled down to normal level.
+
+This is what I got from From Dell…
+
+After checking this with a supervisor we found out the below answer; Please BE AWARE you will be using and modifying that setting at your own risk as we could not know if that will affect adversely the card or any other component on the server.
+
+Here is the link for
+
+Dell OpenManage BMC Utility:
+
+Blocked http://www.dell.com/support/home/us/en/19/Drivers/DriversDetails?driverId=J49YD
+
+****
+
+Description
+
+The default automatic cooling response on PowerEdge 13G server for third-party PCIe cards provisions airflow based on common industry card requirements. Our thermal algorithm targets delivery of maximum 55C inlet air to the PCIe card region based on that industry standard.
+
+For some cards may not need additional cooling above the baseline (such as ones that have their own fan), Dell has enabled an OEM IPMI based command to disable this default fan response to the new PCIe card.
+
+Solution
+
+ENABLE/DISABLE Third-Party PCIe card based default system fan response:
+
+1. Download and install OpenManage BMC Utility.
+
+2. Enable the “IPMI over LAN” in iDRAC of the target machine, this can ben done via iDRAC Web GUI or BIOS Setup.
+
+3. Go to the installation folder of OpenManage BMC Utility, run the following commands:
+
+Set Third-Party PCIe Card Default Cooling Response Logic To Disabled
+
+ipmitool -I lanplus -H
+
+Set Third-Party PCIe Card Default Cooling Response Logic To Enabled
+
+ipmitool -I lanplus -H
+
+Get Third-Party PCIe Card Default Cooling Response Logic Status
+
+ipmitool -I lanplus -H
+
+The response data is:
+
+16 05 00 00 00 05 00 01 00 00 (Disabled)
+
+﻿16 05 00 00 00 05 00 00 00 00 (Enabled)
+
+https://www.reddit.com/r/homelab/comments/x5y63n/fan_curve_for_dell_r730r730xd/
+
+https://github.com/White-Raven/PowerEdge-shutup
+
+From https://community.spiceworks.com/t/dell-poweredge-server-r7xx-series-fan-speed-with-gpu/350434/15
+
+Dell traced the issue back to a setting for how they handle unmatched devices. They were able to run the following IPMI command on my 730’s to resolve the issue:
+
+ipmitool.exe -H 172.16.171.21 -U root -P calvin raw 20 30 0x00 ce 0 0x16 5 0 0 0 5 0 1 0 0 > Set Unmatched Logic Disabled
+
+*** USE AT YOUR OWN RISK ***
+
+Dell was very hesitant to provide me with the above command, so it is not official by any means. I forwarded the details to Teradici under ticket reference: #15134-33400. ﻿I would give them a ring first.
+
+If that doesnt get you anywhere, i provided my Dell ticket in an earlier post: SER# 81901735650.﻿ See if you can reference that with Dell directly.
+
