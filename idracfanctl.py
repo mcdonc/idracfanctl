@@ -123,8 +123,8 @@ class Fans:
                 else:
                     if hm:
                         self.out(
-                            f"fans already at {target_pct}% @ "
-                            f"{current_cpu_temp}°"
+                            f"fans already @ {target_pct}% {current_cpu_temp}°",
+                            severity=logging.DEBUG,
                         )
                     else:
                         self.out(
@@ -132,7 +132,8 @@ class Fans:
                             f"curr temp {current_cpu_temp}° "
                             f"curr pct {self.last_pct}% "
                             f"target pct {target_pct}% "
-                            f"hysteresis {self.hysteresis}"
+                            f"hysteresis {self.hysteresis}",
+                            severity=logging.DEBUG,
                             )
                 break
         else: # nobreak
@@ -270,7 +271,7 @@ if __name__ == "__main__":
         default="ipmitool"
         )
     args = ap.parse_args()
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
     # all temps in °C
     fans = Fans(
         temp_cpu_min = args.temp_cpu_min,
