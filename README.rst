@@ -14,36 +14,56 @@ Must be run as root.
 
 The output of ``idracfanctl.py --help`` is::
 
-    usage: idracfanctl.py [-h] [--temp-cpu-min TEMP_CPU_MIN] [--temp-cpu-max TEMP_CPU_MAX] [--temp-exhaust-max TEMP_EXHAUST_MAX]
-                          [--fan-percent-min FAN_PERCENT_MIN] [--fan-percent-max FAN_PERCENT_MAX] [--fan-step FAN_STEP] [--hysteresis HYSTERESIS]
-                          [--sleep SLEEP] [--disable-pcie-cooling-response DISABLE_PCIE_COOLING_RESPONSE] [--ipmitool IPMITOOL]
+   usage: idracfanctl.py [-h] [--temp-cpu-min TEMP_CPU_MIN]
+                         [--temp-cpu-max TEMP_CPU_MAX]
+                         [--temp-exhaust-max TEMP_EXHAUST_MAX]
+                         [--fan-percent-min FAN_PERCENT_MIN]
+                         [--fan-percent-max FAN_PERCENT_MAX]
+                         [--fan-step FAN_STEP] [--hysteresis HYSTERESIS]
+                         [--sleep SLEEP]
+                         [--disable-pcie-cooling-response DISABLE_PCIE_COOLING_RESPONSE]
+                         [--ipmitool IPMITOOL]
 
-    Script to control Dell Poweredge fan speeds. All temps in °C.
+   Script to control Dell Poweredge fan speeds. All temps in °C.
 
-    options:
-      -h, --help            show this help message and exit
-      --temp-cpu-min TEMP_CPU_MIN
-                            Script won't adjust fans from fan-percent-min til temp-cpu-min in °C is reached. (default: 45)
-      --temp-cpu-max TEMP_CPU_MAX
-                            Max CPU temp in °C that should be allowed before revert to Dell dynamic dan control. (default: 97)
-      --temp-exhaust-max TEMP_EXHAUST_MAX
-                            When exhaust temp reaches this value in °C, revert to Dell dynamic fan control. (default: 60)
-      --fan-percent-min FAN_PERCENT_MIN
-                            The minimum percentage that the fans should run at when under script control. (default: 10)
-      --fan-percent-max FAN_PERCENT_MAX
-                            The maxmum percentage that the fans should run at when under script control. (default: 57)
-      --fan-step FAN_STEP   The number of percentage points to step the fan curve by. (default: 2)
-      --hysteresis HYSTERESIS
-                            Don't change fan speed unless the temp difference in °C exceeds this number of degrees since the last fan speed
-                            change. (default: 2)
-      --sleep SLEEP         The number of seconds between attempts to readjust the fan speed the script will wait within the main loop. (default:
-                            10)
-      --disable-pcie-cooling-response DISABLE_PCIE_COOLING_RESPONSE
-                            If 0, use the default Dell PCIe cooling response, otherwise rely on this script to do the cooling even for PCIe cards
-                            that may not have fans. NB: changes IPMI settings. (default: 0)
-      --ipmitool IPMITOOL   Path to ipmitool binary to use (default: ipmitool)
-  
-And them are the docs.
+   options:
+     -h, --help            show this help message and exit
+     --temp-cpu-min TEMP_CPU_MIN
+                           Script won't adjust fans from fan-percent-min
+                           til temp-cpu-min in °C is reached. (default: 45)
+     --temp-cpu-max TEMP_CPU_MAX
+                           Max CPU temp in °C that should be allowed before
+                           revert to Dell dynamic dan control. (default:
+                           97)
+     --temp-exhaust-max TEMP_EXHAUST_MAX
+                           When exhaust temp reaches this value in °C,
+                           revert to Dell dynamic fan control. (default:
+                           60)
+     --fan-percent-min FAN_PERCENT_MIN
+                           The minimum percentage that the fans should run
+                           at when under script control. (default: 10)
+     --fan-percent-max FAN_PERCENT_MAX
+                           The maxmum percentage that the fans should run
+                           at when under script control. (default: 57)
+     --fan-step FAN_STEP   The number of percentage points to step the fan
+                           curve by. (default: 2)
+     --hysteresis HYSTERESIS
+                           Don't change fan speed unless the temp
+                           difference in °C exceeds this number of degrees
+                           since the last fan speed change. (default: 2)
+     --sleep SLEEP         The number of seconds between attempts to
+                           readjust the fan speed the script will wait
+                           within the main loop. (default: 10)
+     --disable-pcie-cooling-response DISABLE_PCIE_COOLING_RESPONSE
+                           If 0, use the default Dell PCIe cooling
+                           response, otherwise rely on this script to do
+                           the cooling even for PCIe cards that may not
+                           have fans. NB: changes IPMI settings. (default:
+                           0)
+     --ipmitool IPMITOOL   Path to ipmitool binary to use (default:
+                           ipmitool)
+
+And them are all the docs.
       
 NB: be careful with the ``--disable-pci-cooling-response`` flag, I'm not sure
 how to reenable Dell stock settings if it gets disabled without resetting your
