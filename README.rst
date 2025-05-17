@@ -102,7 +102,7 @@ Defaults to this script are slightly more aggressive fan-RPM-wise than Dell
 dynamic fan control in that environment.
 
 At near-zero CPU usage, with the default settings, my fans are usually at
-13-20% and my CPU temps hover between 50-60°C.  With those same defaults, at
+13-20% and my CPU temps hover between 48-56°C.  With those same defaults, at
 100% CPU usage, my fans are at 52-56%, and my CPU temps seem to top out at
 between 87-90°C.
 
