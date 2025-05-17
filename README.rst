@@ -60,8 +60,11 @@ Defaults to this script are slightly more aggressive fan-RPM-wise than Dell
 dynamic fan control in that environment.  At near-zero load, with the default
 settings, my fans are usually at 10% and my CPU temps hover between 50-52°C.
 At 100% load, my fans are at 50%, and my CPU temp seem to top out at between
-86-90°C.  The stepping up of the fans is less smooth than the dynamic control,
-and the script does not control individual fan RPMs like dynamic control does;
-it sets all of them together to a single percentage, each of which is largely
-why it at least sounds more agressive than the default fan control.
+86-90°C.
 
+Under manual control, the stepping of the fans is less smooth than under
+dynamic control, and the script does not control individual fan RPMs like
+dynamic control does; it sets all of them together to a single percentage, each
+of which I suspect is why it at least sounds more aggressive than the default
+fan control.  But at least it doesn't sound like a jet engine when I plug an
+unapproved device in.
