@@ -1,8 +1,7 @@
 Control Dell Poweredge R730XD Fan Speeds
 ========================================
 
-My script to control fan speeds.  Requires Python3.6+ and its stdlib as well
-as ``ipmitool``.
+My script to control fan speeds.  Requires Python3.6+ as well as ``ipmitool``.
 
 Written in order to manually manage fan control manually due to my use of
 "unapproved" storage devices (in my case, a couple of Samsung EVO 850 SATA
@@ -11,7 +10,8 @@ When the script is used, dynamic fan control is turned off, and it is only
 reenabled when the script cannot get temps under control itself or when it is
 exited.
 
-Must be run as root.
+Must be run as root.  Tested only on Linux, not on Windows, although in theory
+it should work on both.
 
 The output of ``idracfanctl.py --help`` is::
 
