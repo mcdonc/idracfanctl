@@ -25,7 +25,9 @@ The output of ``idracfanctl.py --help`` is::
                          [--disable-pcie-cooling-response DISABLE_PCIE_COOLING_RESPONSE]
                          [--ipmitool IPMITOOL]
 
-   Script to control Dell Poweredge fan speeds. All temps in °C.  Must be run as root.
+   Script to control Dell Poweredge fan speeds. All temps in °C.
+   Must be run as root.  Options that refer to CPU temp refer to the hottest
+   CPU in the system, not an average of all CPU temps.
 
    options:
      -h, --help            show this help message and exit

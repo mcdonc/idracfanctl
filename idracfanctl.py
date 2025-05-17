@@ -182,7 +182,9 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(
         description=(
             "Script to control Dell Poweredge fan speeds. All temps in °C. "
-            "Must be run as root."
+            "Must be run as root.  Options that refer to CPU temp refer to "
+            "the hottest CPU temp in the system, not an average of all CPU "
+            "temps."
         ),
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
