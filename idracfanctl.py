@@ -169,9 +169,8 @@ class Fans:
             while True:
                 self.adjust()
                 time.sleep(self.sleep)
-        except (Exception, KeyboardInterrupt, SystemExit):
+        finally:
             self.dynamic()
-            raise
 
     def out(self, msg, severity=logging.INFO):
         self.logger.log(severity, msg)
