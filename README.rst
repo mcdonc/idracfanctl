@@ -86,6 +86,10 @@ Then to see how the script is working, you can do::
 
    sudo journalctl -u idracfanctl.service  -f
 
+To see the information that this script operates against in real time, do::
+
+   watch sudo ipmitool sdr type temperature
+
 NB: be careful with the ``--disable-pci-cooling-response`` flag, I'm not sure
 how to reenable Dell stock settings if it gets disabled without resetting your
 iDRAC.  I use it because I have unapproved PCI hardware too, and this can cause
