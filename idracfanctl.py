@@ -228,7 +228,7 @@ if __name__ == "__main__":
             "script control."
         ),
         type=int,
-        default=10,
+        default=13,
     )
     ap.add_argument(
         "--fan-percent-max",
