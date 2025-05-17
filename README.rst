@@ -64,6 +64,26 @@ The output of ``idracfanctl.py --help`` is::
      --ipmitool IPMITOOL   Path to ipmitool binary to use (default:
                            ipmitool)
 
+I use something like the following ``systemd`` service unit named
+``idracfanctl.service`` to start the script at system startup::
+
+  [Unit]
+  After=local-fs.target
+  Before=multi-user.target
+  Description=Control Dell R730XD fans
+
+  [Service]
+  ExecStart=/path/to/python3 /path/to/idracfanctl.py
+  Restart=always
+  User=root
+
+  [Install]
+  WantedBy=multi-user.target
+
+Then to see how the script is working, you can do::
+
+   sudo journalctl -u idracfanctl.service  -f
+
 And them are all the docs.
       
 NB: be careful with the ``--disable-pci-cooling-response`` flag, I'm not sure
@@ -89,3 +109,4 @@ dynamic control does; it sets all of them together to a single percentage, each
 of which I suspect is why it at least sounds more aggressive than the default
 fan control.  But at least it doesn't sound like a jet engine when I plug an
 unapproved device in.
+
