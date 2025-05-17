@@ -28,7 +28,7 @@ class Fans:
         self.last_pct = 0
         self.last_temp = 0
         self.temp_exhaust_max = temp_exhaust_max
-        self.temp_cpu_max = (temp_cpu_max,)
+        self.temp_cpu_max = temp_cpu_max
         self.disable_pcie_cooling_response = disable_pcie_cooling_response
         self.hysteresis = hysteresis
         self.ipmitool = ipmitool
