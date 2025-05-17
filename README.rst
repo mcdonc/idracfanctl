@@ -109,11 +109,11 @@ With those same defaults, at 100% load, my fans are at 50%, and my CPU temps
 seem to top out at between 87-92°C.  This works for me, you might want to play
 around with other settings.
 
-Under manual control, the stepping of the fans is less smooth than under
+Under script control, the stepping of the fans is less smooth than under Dell
 dynamic control, and the script does not control individual fan RPMs like
 dynamic control does; it sets all of them together to the same single
 percentage value. I suspect each of these factors contribute to the
-script-controlled fans sounding more aggressive than under default fan control
+script-controlled fans sounding more aggressive than under Dell fan control
 when load gets high.  But at least it doesn't sound like a jet engine when I
 plug an unapproved device in, and it's quieter when not under any load, which,
 for me, is often.
