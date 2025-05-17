@@ -219,7 +219,7 @@ if __name__ == "__main__":
             "dynamic fan control."
         ),
         type=int,
-        default=60,
+        default=65,
     )
     ap.add_argument(
         "--fan-percent-min",

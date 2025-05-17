@@ -39,7 +39,7 @@ The output of ``idracfanctl.py --help`` is::
                           revert to Dell dynamic dan control. (default: 97)
     --temp-exhaust-max TEMP_EXHAUST_MAX
                           When exhaust temp reaches this value in °C, revert to
-                          Dell dynamic fan control. (default: 60)
+                          Dell dynamic fan control. (default: 65)
     --fan-percent-min FAN_PERCENT_MIN
                           The minimum percentage that the fans should run at
                           when under script control. (default: 13)
