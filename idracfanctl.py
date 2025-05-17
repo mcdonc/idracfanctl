@@ -71,13 +71,19 @@ class Fans:
                 try:
                     cpu_temps.append(int(temp))
                 except ValueError:  # cannot convert "No reading" to int
-                    self.out(f"Problem reading cpu {offset} temp, got {temp}")
+                    self.out(
+                        f"Problem reading cpu {offset} temp, got {temp}, "
+                        f"using max {self.temp_cpu_max}"
+                    )
                     cpu_temps.append(self.temp_cpu_max)
             if offset == exhaust:
                 try:
                     exhaust_temp = int(temp)
                 except ValueError:  # cannot convert "No reading" to int
-                    self.out(f"Problem reading exhaust temp, got {temp}")
+                    self.out(
+                        f"Problem reading exhaust temp, got {temp}, "
+                        f"using max {self.temp_exhaust_max}"
+                    )
                     exhaust_temp = self.temp_exhaust_max
         temps = {
             "cpu_max": max(cpu_temps),
