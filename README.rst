@@ -115,6 +115,6 @@ dynamic control does; it sets all of them together to the same single
 percentage value. I suspect each of these factors contribute to the
 script-controlled fans sounding more aggressive than under default fan control
 when load gets high.  But at least it doesn't sound like a jet engine when I
-plug an unapproved device in, and it's quieter when not under much load, which,
+plug an unapproved device in, and it's quieter when not under any load, which,
 for me, is often.
 
