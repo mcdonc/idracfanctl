@@ -4,11 +4,11 @@ Control Dell Poweredge R730XD Fan Speeds
 My script to control fan speeds.  Requires Python3.6+ and its stdlib as well
 as ``ipmitool``.
 
-Written in order to manage fan control manually due to my use of "unapproved"
-storage devices (in my case, a couple of Samsung EVO 850 SSDs) causing fans to
-spin up to 100% under Dell dynamic fan control.  When the script is used,
-dynamic fan control is turned off, and it is only reenabled when the script
-cannot get temps under control itself.
+Written in order to manually manage fan control manually due to my use of
+"unapproved" storage devices (in my case, a couple of Samsung EVO 850 SSDs)
+which causes fans to spin up to 100% under Dell dynamic fan control.  When the
+script is used, dynamic fan control is turned off, and it is only reenabled
+when the script cannot get temps under control itself or when it is exited.
 
 Must be run as root.
 
