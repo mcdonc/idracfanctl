@@ -104,9 +104,9 @@ SSDs on the back panel, and 2 NVME drives on a PCI card inside.
 
 Defaults to this script are slightly more aggressive fan-RPM-wise than Dell
 dynamic fan control in that environment.  At near-zero load, with the default
-settings, my fans are usually at 10% and my CPU temps hover between 50-52°C.
-At those same defaults, at 100% load, my fans are at 50%, and my CPU temps seem
-to top out at between 87-92°C.  This works for me, you might want to play
+settings, my fans are usually at 10% and my CPU temps hover between 50-53°C.
+With those same defaults, at 100% load, my fans are at 50%, and my CPU temps
+seem to top out at between 87-92°C.  This works for me, you might want to play
 around with other settings.
 
 Under manual control, the stepping of the fans is less smooth than under
