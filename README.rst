@@ -1,4 +1,4 @@
-Control Dell Poweredge R730XD Fan Speeds
+Control Dell Poweredge R730xd Fan Speeds
 ========================================
 
 My script to control fan speeds.  Requires Python3.6+ as well as ``ipmitool``.
@@ -70,7 +70,7 @@ I use something like the following ``systemd`` service unit named
   [Unit]
   After=local-fs.target
   Before=multi-user.target
-  Description=Control Dell R730XD fans
+  Description=Control Dell R730xd fans
 
   [Service]
   ExecStart=/path/to/python3 /path/to/idracfanctl.py
@@ -91,7 +91,7 @@ how to reenable Dell stock settings if it gets disabled without resetting your
 iDRAC.  I use it because I have unapproved PCI hardware too, and this can cause
 fans to always run at 100%, so I always want to disable it.
 
-Tested only on a Dell Poweredge R730XD with iDRAC 8 Enterprise 2.63.60.61
+Tested only on a Dell Poweredge R730xd with iDRAC 8 Enterprise 2.63.60.61
 (Build 06) in a room with ambient temperatures around 23°C / 70°F.  There are
 two E5-2697 v4 @ 2.30GHz CPUs in the system, each of which has 18 cores.  It
 has 6 spinning rust SAS drives in it, 5 SATA SSDs on the front panel, 2 SATA
