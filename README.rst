@@ -47,7 +47,7 @@ The output of ``idracfanctl.py --help`` is::
                            at when under script control. (default: 10)
      --fan-percent-max FAN_PERCENT_MAX
                            The maxmum percentage that the fans should run
-                           at when under script control. (default: 57)
+                           at when under script control. (default: 60)
      --fan-step FAN_STEP   The number of percentage points to step the fan
                            curve by. (default: 2)
      --hysteresis HYSTERESIS
@@ -105,9 +105,11 @@ SSDs on the back panel, and 2 NVME drives on a PCI card inside.
 Defaults to this script are slightly more aggressive fan-RPM-wise than Dell
 dynamic fan control in that environment.  At near-zero load, with the default
 settings, my fans are usually at 10% and my CPU temps hover between 50-53°C.
-With those same defaults, at 100% load, my fans are at 50%, and my CPU temps
-seem to top out at between 87-92°C.  This works for me, you might want to play
-around with other settings.
+With those same defaults, at 100% load, my fans are at 52%-56%, and my CPU
+temps seem to top out at between 87-90°C.  This works for me, you might want to
+play around with nondefault settings.  On my system, when CPU temps exceed 92°C
+or so, the CPU temperature sensors get wonky and occasionally can't return a
+value, so I like to keep it below that number.
 
 Under script control, the stepping of the fans is less smooth than under Dell
 dynamic control, and the script does not control individual fan RPMs like

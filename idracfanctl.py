@@ -237,7 +237,7 @@ if __name__ == "__main__":
             "script control."
         ),
         type=int,
-        default=57,
+        default=60,
     )
     ap.add_argument(
         "--fan-step",
