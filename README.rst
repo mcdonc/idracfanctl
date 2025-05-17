@@ -7,7 +7,8 @@ Written in order to manually manage fan control due to my use of "unapproved"
 storage devices (in my case, a couple of Samsung EVO 850 SATA SSDs) which
 causes fans to spin up to 100% under Dell dynamic fan control.  When the script
 is used, Dell dynamic fan control is turned off, and it is only reenabled when
-the script cannot get temps under control itself or when it is exited.
+the script cannot get temps under control itself or when it exits due to an
+error or is terminated.
 
 Tested only on Linux, not on Windows, although in theory it should work on
 both.  Must be run as root on Linux.
