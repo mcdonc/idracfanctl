@@ -10,8 +10,8 @@ When the script is used, dynamic fan control is turned off, and it is only
 reenabled when the script cannot get temps under control itself or when it is
 exited.
 
-Must be run as root.  Tested only on Linux, not on Windows, although in theory
-it should work on both.
+Tested only on Linux, not on Windows, although in theory it should work on
+both.  Must be run as root on Linux.
 
 The output of ``idracfanctl.py --help`` is::
 
