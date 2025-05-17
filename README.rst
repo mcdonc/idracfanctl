@@ -109,8 +109,10 @@ At 100% load, my fans are at 50%, and my CPU temp seem to top out at between
 
 Under manual control, the stepping of the fans is less smooth than under
 dynamic control, and the script does not control individual fan RPMs like
-dynamic control does; it sets all of them together to a single percentage, each
-of which I suspect is why it at least sounds more aggressive than the default
-fan control.  But at least it doesn't sound like a jet engine when I plug an
-unapproved device in.
+dynamic control does; it sets all of them together to the same single
+percentage value. I suspect each of these factors contribute to the
+script-controlled fans sounding more aggressive than under default fan control
+when load gets high.  But at least it doesn't sound like a jet engine when I
+plug an unapproved device in, and it's quieter when not under much load, which,
+for me, is often.
 
