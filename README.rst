@@ -78,7 +78,7 @@ I use something like the following ``systemd`` service unit named
   ExecStart=/path/to/python3 /path/to/idracfanctl.py
   Restart=always
   User=root
-  KillSignal=SIGINT;
+  KillSignal=SIGINT
 
   [Install]
   WantedBy=multi-user.target
