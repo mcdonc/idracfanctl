@@ -285,4 +285,7 @@ if __name__ == "__main__":
         disable_pcie_cooling_response=args.disable_pcie_cooling_response,
         ipmitool=args.ipmitool,
     )
-    fans.control()
+    try:
+        fans.control()
+    except KeyboardInterrupt:
+        pass
