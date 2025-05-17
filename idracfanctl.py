@@ -181,7 +181,8 @@ class Fans:
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(
         description=(
-            "Script to control Dell Poweredge fan speeds.  All temps in °C."
+            "Script to control Dell Poweredge fan speeds. All temps in °C. "
+            "Must be run as root."
         ),
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
