@@ -189,3 +189,5 @@ while true; do
     # Interval
     sleep 5
 done
+
+nvidia-smi --query-gpu=timestamp,utilization.gpu,fan.speed,temperature.gpu -l 10
