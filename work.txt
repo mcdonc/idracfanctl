@@ -103,3 +103,89 @@ Dell was very hesitant to provide me with the above command, so it is not offici
 
 If that doesnt get you anywhere, i provided my Dell ticket in an earlier post: SER# 81901735650.﻿ See if you can reference that with Dell directly.
 
+
+https://nvidia.custhelp.com/app/answers/detail/a_id/3751/~/useful-nvidia-smi-queries
+
+
+
+From https://askubuntu.com/questions/42494/how-can-i-change-the-nvidia-gpu-fan-speed
+
+To control Nvidia GPU fan speed via Terminal on Linux Mint 20 with a 1070 Ti:
+
+sudo nvidia-xconfig --cool-bits=4
+
+to tell nvidia-xconfig to allow the fan to be controlled in the command line. You may need to reboot here.
+
+nvidia-smi
+
+Gives information about the GPU(s) and their numbers. Importantly I note that my 1070 Ti is GPU 0.
+
+sudo nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:0]/GPUTargetFanSpeed=55"
+
+For a much more detailed overview of this feature including multiple GPU fans, check out this thorough documentation Nvidia Overclocking and Cooling
+
+nvidia-smi --query-gpu=timestamp,utilization.gpu,temperature.gpu --format=csv -l 5
+
+
+From https://gist.github.com/robzombie91/c622fd82df3e8e1ec9df984220d5a060
+
+#!/bin/bash
+
+# Script to control the fan speed automatically
+
+setFanSpeed() {
+    nvidia-settings -a GPUFanControlState=1 -a GPUTargetFanSpeed="$1" > /dev/null
+}
+
+cleanup() {
+    nvidia-settings -a GPUFanControlState=0
+    exit
+}
+
+declare -i gpuTemp
+
+# Set cleanup function (clean up and exit when interrupted)
+trap cleanup 1 2 3 15 20
+
+# Check if nvidia-settings is installed, and install if not available
+if ! command -v nvidia-settings >/dev/null 2>&1; then
+    echo "nvidia-settings is not installed. Attempting to install..."
+    if command -v apt-get >/dev/null 2>&1; then
+        sudo apt-get update
+        sudo apt-get install nvidia-settings
+    elif command -v yum >/dev/null 2>&1; then
+        sudo yum install nvidia-settings
+    elif command -v dnf >/dev/null 2>&1; then
+        sudo dnf install nvidia-settings
+    elif command -v pacman >/dev/null 2>&1; then
+    	sudo pacman -S nvidia-settings
+    else
+        echo "Unable to install nvidia-settings. Please install it manually."
+        exit 1
+    fi
+fi
+
+while true; do
+    # Get NVIDIA GPU temperature
+    gpuTemp=$(nvidia-settings -q gpucoretemp | grep '^  Attribute' | \
+        head -n 1 | perl -pe 's/^.*?(\d+)\.\s*$/\1/;')
+    echo -en "Current GPU temperature: $gpuTemp \r"
+
+    # Set GPU fan speed
+    if ((gpuTemp >= 70)); then
+        setFanSpeed 100
+    elif ((gpuTemp >= 65)); then
+        setFanSpeed 90
+    elif ((gpuTemp >= 60)); then
+        setFanSpeed 75
+    elif ((gpuTemp >= 55)); then
+        setFanSpeed 60
+    elif ((gpuTemp >= 50)); then
+        setFanSpeed 50
+    else
+        setFanSpeed 40
+    fi
+
+    # Interval
+    sleep 5
+done

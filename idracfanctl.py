@@ -207,10 +207,10 @@ if __name__ == "__main__":
         "--temp-cpu-max",
         help=(
             "Max CPU temp in °C that should be allowed before revert to Dell "
-            "dynamic dan control."
+            "dynamic fan control."
         ),
         type=int,
-        default=97,
+        default=96,
     )
     ap.add_argument(
         "--temp-exhaust-max",
@@ -237,7 +237,7 @@ if __name__ == "__main__":
             "script control."
         ),
         type=int,
-        default=60,
+        default=63,
     )
     ap.add_argument(
         "--fan-step",
